@@ -1,0 +1,15 @@
+<h1>Result</h1>
+<% if @score.present? %>
+  <% if @score.chars.all? { |letter| @score.count(letter) <= @letters.count(letter) } %>
+    <% if @english_word %>
+    <p><strong>Congratulations, </strong><%= @score.upcase %> is a valid english word</p>
+    <% else %>
+    <p><strong>Sorry</strong> but <%= @score.upcase %> doesn't seem to be a valid english word</p>
+    <% end %>
+  <% else  %>
+  <p><strong>Sorry</strong> but <%= @score.upcase %> can't be built out of <%= @letters.chars.join(", ").upcase %> </p>
+  <% end %>
+  <% else %>
+  <p>You need to write at least one letter to play</p>
+  <% end %>
+<%= link_to "Play again !", new_path %>
